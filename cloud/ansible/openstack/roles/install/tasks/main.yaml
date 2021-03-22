@@ -6,7 +6,7 @@
 
 - name: Cloning T-Pot install directory
   ansible.builtin.git:
-    repo: "https://github.com/telekom-security/tpotce.git"
+    repo: "https://github.com/harduino/tpotce.git"
     dest: /root/tpot
 
 - name: Prepare to set user password

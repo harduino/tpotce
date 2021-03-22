@@ -1,8 +1,8 @@
-FROM node:14.15.4-alpine
+FROM node:10.22.0-alpine
 #
 # VARS
-ENV KB_VER=7.11.1
-# 
+ENV KB_VER=7.9.1
+#
 # Include dist
 ADD dist/ /root/dist/
 #
@@ -40,7 +40,7 @@ RUN apk -U --no-cache add \
 #    sed -i "s/#005571/#e20074/g" /usr/share/kibana/built_assets/css/plugins/kibana/index.css && \
 #    sed -i "s/#007ba4/#9e0051/g" /usr/share/kibana/built_assets/css/plugins/kibana/index.css && \
 #    sed -i "s/#00465d/#4f0028/g" /usr/share/kibana/built_assets/css/plugins/kibana/index.css && \
-    echo "xpack.infra.enabled: false" >> /usr/share/kibana/config/kibana.yml && \ 
+    echo "xpack.infra.enabled: false" >> /usr/share/kibana/config/kibana.yml && \
     echo "xpack.logstash.enabled: false" >> /usr/share/kibana/config/kibana.yml && \
     echo "xpack.canvas.enabled: false" >> /usr/share/kibana/config/kibana.yml && \
     echo "xpack.spaces.enabled: false" >> /usr/share/kibana/config/kibana.yml && \
@@ -49,7 +49,6 @@ RUN apk -U --no-cache add \
     echo "xpack.uptime.enabled: false" >> /usr/share/kibana/config/kibana.yml && \
     echo "xpack.securitySolution.enabled: false" >> /usr/share/kibana/config/kibana.yml && \
     echo "xpack.ml.enabled: false" >> /usr/share/kibana/config/kibana.yml && \
-    echo "xpack.fleet.enabled: false" >> /usr/share/kibana/config/kibana.yml && \
     echo "elasticsearch.requestTimeout: 60000" >> /usr/share/kibana/config/kibana.yml && \
     echo "elasticsearch.shardTimeout: 60000" >> /usr/share/kibana/config/kibana.yml && \
 # There is no switch to disable Enterprise Search, so we need to remove it

@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-🗨️ Please post your questions in [Discussions](https://github.com/telekom-security/tpotce/discussions) and keep the issues for **issues**. Thank you 😁.<br>
+🗨️ Please post your questions in [Discussions](https://github.com/harduino/tpotce/discussions) and keep the issues for **issues**. Thank you 😁.<br>
 
 Before you post your issue make sure it has not been answered yet and provide `basic support information` if you come to the conclusion it is a new issue.
 
