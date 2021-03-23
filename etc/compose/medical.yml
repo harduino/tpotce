@@ -125,7 +125,7 @@ services:
     mem_limit: 4g
     ports:
      - "127.0.0.1:64298:9200"
-    image: "ghcr.io/telekom-security/elasticsearch:2006"
+    image: "siemonster/elasticsearch:tpot"
     volumes:
      - /data:/data
 
@@ -138,7 +138,7 @@ services:
         condition: service_healthy
     ports:
      - "127.0.0.1:64296:5601"
-    image: "ghcr.io/telekom-security/kibana:2006"
+    image: "siemonster/kibana:tpot"
 
 ## Logstash service
   logstash:
@@ -151,7 +151,7 @@ services:
         condition: service_healthy
     env_file:
      - /opt/tpot/etc/compose/elk_environment
-    image: "ghcr.io/telekom-security/logstash:2006"
+    image: "siemonster/logstash:tpot"
     volumes:
      - /data:/data
 

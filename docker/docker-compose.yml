@@ -137,17 +137,17 @@ services:
 ## Elasticsearch service
   elasticsearch:
     build: elk/elasticsearch/.
-    image: "ghcr.io/telekom-security/elasticsearch:2006"
+    image: "siemonster/elasticsearch:tpot"
 
 ## Kibana service
   kibana:
     build: elk/kibana/.
-    image: "ghcr.io/telekom-security/kibana:2006"
+    image: "siemonster/kibana:tpot"
 
 ## Logstash service
   logstash:
     build: elk/logstash/.
-    image: "ghcr.io/telekom-security/logstash:2006"
+    image: "siemonster/logstash:tpot"
 
 ## Elasticsearch-head service
   head:
