@@ -373,7 +373,7 @@ services:
         condition: service_healthy
     env_file:
      - /opt/tpot/etc/compose/elk_environment
-    image: "siemonster/logstash:kibana"
+    image: "siemonster/tpot:logstash"
     volumes:
      - /data:/data
 
