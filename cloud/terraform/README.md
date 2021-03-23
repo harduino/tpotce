@@ -124,4 +124,4 @@ If you want the remove the built infrastructure, you can run [`terraform destroy
 
 <a name="connecting"></a>
 ## Connecting to the Instance
-When the installation is completed, you can proceed with connecting/logging in to the T-Pot according to the [documentation](https://github.com/telekom-security/tpotce#ssh-and-web-access).
+When the installation is completed, you can proceed with connecting/logging in to the T-Pot according to the [documentation](https://github.com/harduino/tpotce#ssh-and-web-access).
