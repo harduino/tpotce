@@ -20,6 +20,7 @@ RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
             python3 \
             python3-dev \
 	    py-cffi \
+	    py-cryptography \
 	    py-pillow \
             py-future \
             py3-pip \
@@ -32,11 +33,11 @@ RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
     addgroup -g 2000 spiderfoot && \
     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && \
 #
-# Install spiderfoot 
+# Install spiderfoot
     git clone --depth=1 -b v3.1 https://github.com/smicallef/spiderfoot /home/spiderfoot && \
     cd /home/spiderfoot && \
-    pip3 install --no-cache-dir wheel && \ 
-    pip3 install --no-cache-dir -r requirements.txt && \ 
+    pip3 install --no-cache-dir wheel && \
+    pip3 install --no-cache-dir -r requirements.txt && \
     chown -R spiderfoot:spiderfoot /home/spiderfoot && \
     sed -i "s#'__docroot': ''#'__docroot': '\/spiderfoot'#" /home/spiderfoot/sf.py && \
     sed -i 's#raise cherrypy.HTTPRedirect("\/")#raise cherrypy.HTTPRedirect("\/spiderfoot")#' /home/spiderfoot/sfwebui.py && \

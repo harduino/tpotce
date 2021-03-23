@@ -1,11 +1,11 @@
 FROM alpine:3.12
-#  
+#
 # Include dist
 ADD dist/ /root/dist/
 #
 # Install packages
 RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
-    apk -U --no-cache add \ 
+    apk -U --no-cache add \
             		build-base \
             		git \
             		libcap \
@@ -13,7 +13,9 @@ RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
             		openssl-dev \
                         libzmq \
             		postgresql-dev \
+			py3-cryptography \
 			py3-pip \
+			py3-pyzmq \
             		python3 \
             		python3-dev \
             		py-virtualenv && \

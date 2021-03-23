@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.13
 #
 # VARS
 ENV LS_VER=7.9.1
@@ -6,8 +6,8 @@ ENV LS_VER=7.9.1
 ADD dist/ /root/dist/
 #
 # Setup env and apt
-RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
-    apk -U --no-cache add \
+#RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
+RUN apk -U --no-cache add \
              aria2 \
              bash \
              bzip2 \
@@ -27,6 +27,7 @@ RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
     mkdir -p /usr/share/logstash/ && \
     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-$LS_VER.tar.gz && \
     tar xvfz logstash-$LS_VER.tar.gz --strip-components=1 -C /usr/share/logstash/ && \
+    rm -rf /usr/share/logstash/jdk && \
     /usr/share/logstash/bin/logstash-plugin install logstash-filter-translate && \
     /usr/share/logstash/bin/logstash-plugin install logstash-output-syslog && \
 #

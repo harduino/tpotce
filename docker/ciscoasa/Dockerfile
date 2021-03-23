@@ -26,6 +26,7 @@ RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
     git clone https://github.com/cymmetria/ciscoasa_honeypot && \
     cd ciscoasa_honeypot && \
     git checkout d6e91f1aab7fe6fc01fabf2046e76b68dd6dc9e2 && \
+    pip3 --no-cache-dir install cryptography~=3.3.1 && \
     pip3 install --no-cache-dir -r requirements.txt && \
     cp /root/dist/asa_server.py /opt/ciscoasa_honeypot && \
     chown -R ciscoasa:ciscoasa /opt/ciscoasa_honeypot && \

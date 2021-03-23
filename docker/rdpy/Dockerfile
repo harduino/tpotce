@@ -13,16 +13,19 @@ RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
             openssl-dev \
             python \
             python-dev \
-            py-pip \
-            py-setuptools && \
+            python3 \
+            python3-dev \
+            py3-pip \
+            py3-setuptools && \
 #
 # Setup user
     addgroup -g 2000 rdpy && \
     adduser -S -s /bin/ash -u 2000 -D -g 2000 rdpy && \
 #
-# Install deps 
-    pip install --no-cache-dir --upgrade cffi && \
-    pip install --no-cache-dir \
+# Install deps
+    pip3 --no-cache-dir install cryptography~=3.3.1 && \
+    pip3 install --no-cache-dir --upgrade cffi && \
+    pip3 install --no-cache-dir \
                 hpfeeds \
                 twisted \
                 pyopenssl \
@@ -37,7 +40,7 @@ RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
     git clone https://github.com/t3chn0m4g3/rdpy && \
     cd rdpy && \
     git checkout 1d2a4132aefe0637d09cac1a6ab83ec5391f40ca && \
-    python setup.py install && \
+    python3 setup.py install && \
 #
 # Setup user, groups and configs
     cp /root/dist/* /opt/rdpy/ && \
@@ -51,7 +54,7 @@ RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
                     libffi-dev \
                     openssl-dev \
                     python-dev \
-                    py-pip && \ 
+                    py-pip && \
     rm -rf /var/cache/apk/*
 #
 # Start rdpy

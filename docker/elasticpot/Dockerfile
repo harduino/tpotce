@@ -13,6 +13,7 @@ RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
 	     openssl \
              openssl-dev \
 	     postgresql-dev \
+             py3-cryptography \
              py3-mysqlclient \
              py3-requests \
 	     py3-pip \
