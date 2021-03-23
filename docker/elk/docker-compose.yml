@@ -24,7 +24,7 @@ services:
     mem_limit: 4g
     ports:
      - "127.0.0.1:64298:9200"
-    image: "siemonster/elasticsearch:tpot"
+    image: "siemonster/tpot:elasticsearch"
     volumes:
      - /data:/data
 
@@ -39,7 +39,7 @@ services:
         condition: service_healthy
     ports:
      - "127.0.0.1:64296:5601"
-    image: "siemonster/kibana:tpot"
+    image: "siemonster/tpot:kibana"
 
 ## Logstash service
   logstash:
@@ -51,9 +51,9 @@ services:
     depends_on:
       elasticsearch:
         condition: service_healthy
-    env_file:
-     - /opt/tpot/etc/compose/elk_environment
-    image: "siemonster/logstash:tpot"
+    # env_file:
+     # - /opt/tpot/etc/compose/elk_environment
+    image: "siemonster/logstash:kibana"
     volumes:
      - /data:/data
 #     - /root/tpotce/docker/elk/logstash/dist/logstash.conf:/etc/logstash/conf.d/logstash.conf

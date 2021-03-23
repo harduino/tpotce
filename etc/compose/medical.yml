@@ -26,7 +26,7 @@ services:
      - dicompot_local
     ports:
      - "11112:11112"
-    image: "ghcr.io/telekom-security/dicompot:2006"
+    image: "siemonster/tpot:dicompot"
     read_only: true
     volumes:
      - /data/dicompot/log:/var/log/dicompot
@@ -40,7 +40,7 @@ services:
      - medpot_local
     ports:
      - "2575:2575"
-    image: "ghcr.io/telekom-security/medpot:2006"
+    image: "siemonster/tpot:medpot"
     read_only: true
     volumes:
      - /data/medpot/log/:/var/log/medpot
@@ -58,7 +58,7 @@ services:
      - NET_ADMIN
      - SYS_NICE
      - NET_RAW
-    image: "ghcr.io/telekom-security/fatt:2006"
+    image: "siemonster/tpot:fatt"
     volumes:
      - /data/fatt/log:/opt/fatt/log
 
@@ -67,7 +67,7 @@ services:
     container_name: p0f
     restart: always
     network_mode: "host"
-    image: "ghcr.io/telekom-security/p0f:2006"
+    image: "siemonster/tpot:p0f"
     read_only: true
     volumes:
      - /data/p0f/log:/var/log/p0f
@@ -84,7 +84,7 @@ services:
      - NET_ADMIN
      - SYS_NICE
      - NET_RAW
-    image: "ghcr.io/telekom-security/suricata:2006"
+    image: "siemonster/tpot:suricata"
     volumes:
      - /data/suricata/log:/var/log/suricata
 
@@ -101,7 +101,7 @@ services:
      - cyberchef_local
     ports:
      - "127.0.0.1:64299:8000"
-    image: "ghcr.io/telekom-security/cyberchef:2006"
+    image: "siemonster/tpot:cyberchef"
     read_only: true
 
 #### ELK
@@ -125,7 +125,7 @@ services:
     mem_limit: 4g
     ports:
      - "127.0.0.1:64298:9200"
-    image: "siemonster/elasticsearch:tpot"
+    image: "siemonster/tpot:elasticsearch"
     volumes:
      - /data:/data
 
@@ -138,7 +138,7 @@ services:
         condition: service_healthy
     ports:
      - "127.0.0.1:64296:5601"
-    image: "siemonster/kibana:tpot"
+    image: "siemonster/tpot:kibana"
 
 ## Logstash service
   logstash:
@@ -151,7 +151,7 @@ services:
         condition: service_healthy
     env_file:
      - /opt/tpot/etc/compose/elk_environment
-    image: "siemonster/logstash:tpot"
+    image: "siemonster/logstash:kibana"
     volumes:
      - /data:/data
 
@@ -164,7 +164,7 @@ services:
         condition: service_healthy
     ports:
      - "127.0.0.1:64302:9100"
-    image: "ghcr.io/telekom-security/head:2006"
+    image: "siemonster/tpot:head"
     read_only: true
 
 # Ewsposter service
@@ -184,7 +184,7 @@ services:
      - EWS_HPFEEDS_FORMAT=json
     env_file:
      - /opt/tpot/etc/compose/elk_environment
-    image: "ghcr.io/telekom-security/ewsposter:2006"
+    image: "siemonster/tpot:ewsposter"
     volumes:
      - /data:/data
      - /data/ews/conf/ews.ip:/opt/ewsposter/ews.ip
@@ -202,17 +202,17 @@ services:
      - /var/tmp/nginx/proxy
      - /var/tmp/nginx/fastcgi
      - /var/tmp/nginx/uwsgi
-     - /var/tmp/nginx/scgi 
+     - /var/tmp/nginx/scgi
      - /run
      - /var/log/php7/
-     - /var/lib/nginx/tmp:uid=100,gid=82 
+     - /var/lib/nginx/tmp:uid=100,gid=82
      - /var/lib/nginx/html/storage/logs:uid=100,gid=82
      - /var/lib/nginx/html/storage/framework/views:uid=100,gid=82
     network_mode: "host"
     ports:
      - "64297:64297"
      - "127.0.0.1:64304:64304"
-    image: "ghcr.io/telekom-security/nginx:2006"
+    image: "siemonster/tpot:nginx"
     read_only: true
     volumes:
      - /data/nginx/cert/:/etc/nginx/cert/:ro
@@ -230,6 +230,6 @@ services:
      - spiderfoot_local
     ports:
      - "127.0.0.1:64303:8080"
-    image: "ghcr.io/telekom-security/spiderfoot:2006"
+    image: "siemonster/tpot:spiderfoot"
     volumes:
      - /data/spiderfoot/spiderfoot.db:/home/spiderfoot/spiderfoot.db
