@@ -1,3 +1,5 @@
+FROM dtagdevsec/nginx:2006 as Issue717Fix
+
 FROM alpine:3.12
 #
 # Include dist
@@ -79,3 +81,6 @@ RUN sed -i 's/dl-cdn/dl-2/g' /etc/apk/repositories && \
 #
 # Start nginx
 CMD /start.sh && php-fpm7 && exec nginx -g 'daemon off;'
+
+# [SIEMonster] fix issue 717
+COPY --from=Issue717Fix /var/lib/nginx/html/database/app.sqlite /var/lib/nginx/html/database/app.sqlite
